@@ -1,0 +1,82 @@
+---
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header>
+	<nav>
+		<a href="/" class="logo">
+			<span class="logo-full">荷兰华人数据社群</span>
+		</a>
+		<div class="nav-links">
+			<HeaderLink href="/">首页</HeaderLink>
+			<HeaderLink href="/blog">活动回顾</HeaderLink>
+			<HeaderLink href="/about">关于我们</HeaderLink>
+			<a href="#" target="_blank" class="nav-cta nav-cta-outline">现场活动</a>
+			<a href="https://www.meetup.com/%e8%8d%b7%e5%85%b0%e5%8d%8e%e4%ba%ba%e6%95%b0%e6%8d%ae%e7%be%a4/" target="_blank" class="nav-cta">加入社群</a>
+		</div>
+	</nav>
+</header>
+
+<style>
+	header {
+		background: #fff;
+		border-bottom: 1px solid #e2e8f0;
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+	nav {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: 0 1em;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
+	}
+	.logo {
+		display: flex;
+		align-items: baseline;
+		gap: 0.5em;
+		text-decoration: none;
+		color: inherit;
+	}
+	.logo-full {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #1d4ed8;
+	}
+	.nav-links {
+		display: flex;
+		align-items: center;
+		gap: 0.25em;
+	}
+	.nav-cta {
+		margin-left: 0.5em;
+		padding: 0.4em 1em;
+		background: #1d4ed8;
+		color: #fff !important;
+		border-radius: 6px;
+		font-size: 0.875rem;
+		font-weight: 500;
+		text-decoration: none;
+		transition: background 0.15s;
+	}
+	.nav-cta:hover {
+		background: #1e40af;
+		text-decoration: none;
+	}
+	.nav-cta-outline {
+		background: #fff;
+		color: #1d4ed8 !important;
+		border: 1.5px solid #1d4ed8;
+	}
+	.nav-cta-outline:hover {
+		background: #dbeafe;
+	}
+	@media (max-width: 600px) {
+		.logo-full { display: none; }
+		.nav-cta { display: none; }
+	}
+</style>

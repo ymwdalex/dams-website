@@ -1,0 +1,165 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, meetupNumber, category, location, coverPhoto, photos, photoFolder } = Astro.props;
+
+const dateStr = pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="back-link">
+				<a href="/blog">&larr; 返回活动回顾</a>
+			</div>
+
+			<article>
+				{coverPhoto && photoFolder && (
+					<div class="cover">
+						<img src={`/photos/${photoFolder}/${coverPhoto}`} alt={title} />
+					</div>
+				)}
+
+				<div class="header">
+					{Astro.props.category === 'datacafe' ? (
+					<span class="badge badge-cafe">Data Cafe</span>
+				) : meetupNumber && (
+					<span class="badge">第 {meetupNumber} 次 Meetup</span>
+				)}
+					<h1>{title}</h1>
+					<p class="date">{dateStr}</p>
+					<p class="desc">{description}</p>
+				</div>
+
+				<div class="content prose">
+					<slot />
+				</div>
+
+				{photos && photos.length > 0 && photoFolder && (
+					<div class="gallery-section">
+						<h2>活动照片</h2>
+						<PhotoGallery photos={photos} folder={photoFolder} />
+					</div>
+				)}
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.back-link {
+		margin-bottom: 1.5em;
+		font-size: 0.875rem;
+	}
+	.back-link a {
+		color: #718096;
+	}
+	.back-link a:hover {
+		color: #1d4ed8;
+	}
+	.cover {
+		width: 100%;
+		max-height: 420px;
+		overflow: hidden;
+		border-radius: 12px;
+		margin-bottom: 2em;
+	}
+	.cover img {
+		width: 100%;
+		height: 420px;
+		object-fit: cover;
+		border-radius: 12px;
+		display: block;
+	}
+	.header {
+		margin-bottom: 2em;
+	}
+	.badge {
+		display: inline-block;
+		background: #dbeafe;
+		color: #1d4ed8;
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 0.25em 0.75em;
+		border-radius: 999px;
+		margin-bottom: 0.75em;
+	}
+	.badge-cafe {
+		background: #d1fae5;
+		color: #065f46;
+	}
+	.header h1 {
+		font-size: 1.9rem;
+		margin-bottom: 0.4em;
+	}
+	.date {
+		color: #718096;
+		font-size: 0.9rem;
+		margin: 0 0 0.5em 0;
+	}
+	.desc {
+		color: #4a5568;
+		font-size: 1rem;
+		margin: 0;
+	}
+	.content.prose {
+		max-width: 800px;
+	}
+	.content.prose :global(h2) {
+		font-size: 1.35rem;
+		margin-top: 2em;
+		padding-bottom: 0.4em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+	.content.prose :global(h3) {
+		font-size: 1.1rem;
+		margin-top: 1.5em;
+		color: #2d3748;
+	}
+	.content.prose :global(table) {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+		margin: 1em 0;
+	}
+	.content.prose :global(th) {
+		background: #f1f5f9;
+		padding: 0.6em 1em;
+		text-align: left;
+		font-weight: 600;
+		border: 1px solid #e2e8f0;
+	}
+	.content.prose :global(td) {
+		padding: 0.6em 1em;
+		border: 1px solid #e2e8f0;
+	}
+	.content.prose :global(tr:hover td) {
+		background: #f8fafc;
+	}
+	.content.prose :global(li) {
+		margin-bottom: 0.5em;
+	}
+	.content.prose :global(strong) {
+		color: #2d3748;
+	}
+	.gallery-section {
+		margin-top: 3em;
+	}
+	.gallery-section h2 {
+		font-size: 1.35rem;
+		margin-bottom: 0.5em;
+		padding-bottom: 0.4em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+</style>

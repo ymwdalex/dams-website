@@ -1,0 +1,282 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog'))
+	.filter((p) => p.data.category !== 'datacafe')
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!-- Hero -->
+			<section class="hero">
+				<div class="hero-text">
+					<h1>荷兰华人数据社群</h1>
+					<p class="tagline">连接荷兰数据行业华人从业者与学习者的专业社区</p>
+					<p class="sub">涵盖数据科学、数据工程、AI、机器学习、统计分析等领域</p>
+					<div class="hero-actions">
+						<a href="/blog" class="btn-primary">查看活动回顾</a>
+						<a href="https://www.meetup.com/%e8%8d%b7%e5%85%b0%e5%8d%8e%e4%ba%ba%e6%95%b0%e6%8d%ae%e7%be%a4/" target="_blank" class="btn-secondary">加入社群</a>
+						<a href="#" target="_blank" class="btn-secondary">现场活动</a>
+					</div>
+				</div>
+				<div class="stats">
+					<div class="stat">
+						<span class="stat-num">600+</span>
+						<span class="stat-label">社群成员</span>
+					</div>
+					<div class="stat">
+						<span class="stat-num">13+</span>
+						<span class="stat-label">线下活动</span>
+					</div>
+					<div class="stat">
+						<span class="stat-num">200+</span>
+						<span class="stat-label">每次参与者</span>
+					</div>
+					<div class="stat">
+						<span class="stat-num">4+</span>
+						<span class="stat-label">Data Cafe</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Past events -->
+			<section class="latest">
+				<h2 class="section-title">往期活动</h2>
+				<div class="events-grid">
+					{posts.slice(0, 3).map((post) => (
+						<a href={`/blog/${post.id}/`} class="event-card">
+							{post.data.coverPhoto && post.data.photoFolder && (
+								<div class="card-img">
+									<img
+										src={`/photos/${post.data.photoFolder}/${post.data.coverPhoto}`}
+										alt={post.data.title}
+										loading="lazy"
+									/>
+								</div>
+							)}
+							<div class="card-body">
+								{post.data.category === 'datacafe' ? (
+									<span class="badge badge-cafe">Data Cafe</span>
+								) : post.data.meetupNumber && (
+									<span class="badge">第 {post.data.meetupNumber} 次 Meetup</span>
+								)}
+								<h3>{post.data.title}</h3>
+								<p class="card-date">
+									{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+								</p>
+								<p class="card-desc">{post.data.description}</p>
+								<span class="read-more">查看详情 &rarr;</span>
+							</div>
+						</a>
+					))}
+				</div>
+			</section>
+
+			<!-- About -->
+			<section class="about">
+				<h2 class="section-title">关于社群</h2>
+				<p>
+					荷兰华人数据社群（DAMS）成立于荷兰，专注于连接在荷数据行业的华人从业者与学习者。
+					我们每半年举办一次线下 Meetup，邀请来自数据科学、数据工程、AI、机器学习、统计等领域的嘉宾分享经验，
+					创造专业交流与职业发展的机会。
+				</p>
+				<a href="/about" class="btn-link">了解更多 &rarr;</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.hero {
+		padding: 3em 0 2.5em;
+		border-bottom: 1px solid #e2e8f0;
+		margin-bottom: 3em;
+	}
+	.hero h1 {
+		font-size: 2.5rem;
+		margin-bottom: 0.4em;
+		color: #1a202c;
+	}
+	.tagline {
+		font-size: 1.15rem;
+		color: #4a5568;
+		margin: 0 0 0.4em 0;
+	}
+	.sub {
+		font-size: 0.95rem;
+		color: #718096;
+		margin: 0 0 1.5em 0;
+	}
+	.hero-actions {
+		display: flex;
+		gap: 0.75em;
+		flex-wrap: wrap;
+		margin-bottom: 2.5em;
+	}
+	.btn-primary {
+		padding: 0.6em 1.4em;
+		background: #1d4ed8;
+		color: #fff;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: background 0.15s;
+	}
+	.btn-primary:hover {
+		background: #1e40af;
+		text-decoration: none;
+	}
+	.btn-secondary {
+		padding: 0.6em 1.4em;
+		background: #fff;
+		color: #1d4ed8;
+		border: 1.5px solid #1d4ed8;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 0.95rem;
+		transition: all 0.15s;
+	}
+	.btn-secondary:hover {
+		background: #dbeafe;
+		text-decoration: none;
+	}
+	.stats {
+		display: flex;
+		gap: 2.5em;
+		flex-wrap: wrap;
+	}
+	.stat {
+		display: flex;
+		flex-direction: column;
+	}
+	.stat-num {
+		font-size: 2rem;
+		font-weight: 800;
+		color: #1d4ed8;
+		line-height: 1;
+	}
+	.stat-label {
+		font-size: 0.85rem;
+		color: #718096;
+		margin-top: 0.25em;
+	}
+	.section-title {
+		font-size: 1.4rem;
+		margin-bottom: 1.25em;
+		padding-bottom: 0.5em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+	.latest {
+		margin-bottom: 3em;
+	}
+	.events-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 1.5em;
+	}
+	.event-card {
+		display: flex;
+		flex-direction: column;
+		background: #fff;
+		border: 1px solid #e2e8f0;
+		border-radius: 12px;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		transition: box-shadow 0.15s, transform 0.15s;
+	}
+	.event-card:hover {
+		box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
+	.card-img {
+		height: 200px;
+		overflow: hidden;
+	}
+	.card-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+		display: block;
+		transition: transform 0.2s;
+	}
+	.event-card:hover .card-img img {
+		transform: scale(1.03);
+	}
+	.card-body {
+		padding: 1.25em;
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+	.badge {
+		display: inline-block;
+		background: #dbeafe;
+		color: #1d4ed8;
+		font-size: 0.78rem;
+		font-weight: 600;
+		padding: 0.2em 0.65em;
+		border-radius: 999px;
+		margin-bottom: 0.6em;
+		width: fit-content;
+	}
+	.badge-cafe {
+		background: #d1fae5;
+		color: #065f46;
+	}
+	.card-body h3 {
+		font-size: 1.25rem;
+		margin-bottom: 0.3em;
+	}
+	.card-date {
+		color: #718096;
+		font-size: 0.875rem;
+		margin: 0 0 0.6em 0;
+	}
+	.card-desc {
+		color: #4a5568;
+		font-size: 0.9rem;
+		margin: 0 0 1em 0;
+		line-height: 1.6;
+	}
+	.read-more {
+		color: #1d4ed8;
+		font-size: 0.875rem;
+		font-weight: 600;
+	}
+	.about {
+		background: #fff;
+		border: 1px solid #e2e8f0;
+		border-radius: 12px;
+		padding: 2em;
+		margin-bottom: 1em;
+	}
+	.about p {
+		color: #4a5568;
+		line-height: 1.8;
+		margin-bottom: 1em;
+	}
+	.btn-link {
+		color: #1d4ed8;
+		font-weight: 600;
+		font-size: 0.9rem;
+	}
+	@media (max-width: 720px) {
+		.hero h1 { font-size: 1.75rem; }
+		.events-grid { grid-template-columns: 1fr; }
+	}
+</style>

@@ -1,0 +1,257 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title="关于我们 — 荷兰华人数据社群 DAMS" description="为在荷华人数据人才提供分享、交流、创新的平台，连接工业界专家与学术界学者。" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>关于我们</h1>
+				<p>荷兰华人数据社群（Dutch Chinese Data Community）</p>
+			</div>
+
+			<div class="content">
+
+				<section class="mission">
+					<h2>社群使命</h2>
+					<p>依托于微信群、Meetup 和 Data Cafe 活动，为在荷华人数据人才提供一个<strong>分享、交流、创新</strong>的平台。我们打破信息孤岛，连接工业界专家与学术界学者，共同赋能华人在荷兰数据生态圈的影响力。</p>
+				</section>
+
+				<section>
+					<h2>社群概览</h2>
+					<div class="stats-grid">
+						<div class="stat-card">
+							<span class="stat-num">600+</span>
+							<span class="stat-label">实名认证的专业人士与学者</span>
+						</div>
+						<div class="stat-card">
+							<span class="stat-num">13+</span>
+							<span class="stat-label">大型线下 Meetup</span>
+						</div>
+						<div class="stat-card">
+							<span class="stat-num">200+</span>
+							<span class="stat-label">每次活动参与人数</span>
+						</div>
+						<div class="stat-card">
+							<span class="stat-num">4+</span>
+							<span class="stat-label">Data Cafe 沙龙</span>
+						</div>
+					</div>
+					<p><strong>覆盖领域：</strong>数据科学（DS）、数据工程（DE）、机器学习（ML）、人工智能（AI）、商业分析（BA）、数据分析（DA）、数据管理（Data Management）、数据治理（Data Governance）等</p>
+					<p><strong>成员分布：</strong>遍布荷兰各行业，包括顶尖科技公司（Booking、ASML、Adyen、Microsoft、Amazon、Meta、Uber、腾讯）、金融机构（ABN AMRO、ING、Rabobank）、咨询公司（KPMG、EY）及知名高校（TU Delft、University of Amsterdam、TU Eindhoven）等</p>
+				</section>
+
+				<section>
+					<h2>核心活动</h2>
+					<div class="event-types">
+						<div class="event-type">
+							<h3>半年度大型 Meetup</h3>
+							<p>行业前沿技术研讨与跨界社交。深度内容涵盖：</p>
+							<ul>
+								<li><strong>技术前沿：</strong>LLM/Generative AI 落地、Transformer 演进、CV 鲁棒性研究等</li>
+								<li><strong>工程实战：</strong>MLOps 生产环境部署、Python 高性能开发、大规模搜索算法优化</li>
+								<li><strong>行业洞察：</strong>能源、医疗、物流等垂直领域的数据驱动转型经验</li>
+							</ul>
+						</div>
+						<div class="event-type">
+							<h3>Data Cafe</h3>
+							<p>轻量级、深度互动的线下沙龙。围绕特定技术痛点或职场话题（如"数据职场避坑指南"、"Tech Lead 成长之路"），在轻松的氛围中实现知识的深度传递。</p>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>发展里程碑</h2>
+					<div class="timeline">
+						<div class="milestone">
+							<span class="milestone-date">2019.12</span>
+							<span class="milestone-text">社群萌芽，首届 Meetup 在乌得勒支成功举办</span>
+						</div>
+						<div class="milestone">
+							<span class="milestone-date">2020–2022</span>
+							<span class="milestone-text">通过 7 场线上线下结合的活动，成员突破 200 人，建立实名制交流机制</span>
+						</div>
+						<div class="milestone">
+							<span class="milestone-date">2024–2025</span>
+							<span class="milestone-text">第 12、13 届活动参与者均超 200 人，社群正式步入 600+ 成员时代</span>
+						</div>
+					</div>
+				</section>
+
+				<section>
+					<h2>联系我们</h2>
+					<ul>
+						<li><strong>邮箱：</strong><a href="mailto:helanshujuqun@gmail.com">helanshujuqun@gmail.com</a></li>
+						<li><strong>小红书：</strong><a href="https://xhslink.com/m/25ZuiyDhVIJ" target="_blank">点击查看</a></li>
+						<li><strong>微信群：</strong>邀请制实名加入</li>
+					</ul>
+				</section>
+
+				<section class="join">
+					<h2>加入我们</h2>
+					<p>如果你是：</p>
+					<ul>
+						<li>在荷兰从事数据相关工作的<strong>职场人士</strong></li>
+						<li>数据领域的<strong>研究员或在校学生</strong></li>
+						<li>对数据驱动创新充满热情的<strong>跨界探索者</strong></li>
+					</ul>
+					<p>欢迎加入我们，与 600+ 位同行并肩前行！</p>
+					<a href="https://www.meetup.com/%e8%8d%b7%e5%85%b0%e5%8d%8e%e4%ba%ba%e6%95%b0%e6%8d%ae%e7%be%a4/" target="_blank" class="btn">加入社群 &rarr;</a>
+				</section>
+
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	.page-header {
+		margin-bottom: 2em;
+		padding-bottom: 1em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+	.page-header h1 {
+		font-size: 2rem;
+		margin-bottom: 0.25em;
+	}
+	.page-header p {
+		color: #718096;
+		margin: 0;
+	}
+	.content {
+		max-width: 760px;
+	}
+	.content section {
+		margin-bottom: 2.5em;
+	}
+	.content h2 {
+		font-size: 1.35rem;
+		margin-bottom: 0.75em;
+		padding-bottom: 0.4em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+	.content h3 {
+		font-size: 1.05rem;
+		margin-bottom: 0.4em;
+		color: #2d3748;
+	}
+	.content p {
+		color: #4a5568;
+		line-height: 1.8;
+		margin-bottom: 0.75em;
+	}
+	.content ul {
+		color: #4a5568;
+		line-height: 1.8;
+		padding-left: 1.5em;
+		margin-bottom: 0.75em;
+	}
+	.content li {
+		margin-bottom: 0.4em;
+	}
+	.mission p {
+		font-size: 1.05rem;
+		color: #2d3748;
+	}
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 1em;
+		margin-bottom: 1.25em;
+	}
+	.stat-card {
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 10px;
+		padding: 1em;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+	.stat-num {
+		font-size: 1.75rem;
+		font-weight: 800;
+		color: #1d4ed8;
+		line-height: 1;
+		margin-bottom: 0.3em;
+	}
+	.stat-label {
+		font-size: 0.78rem;
+		color: #718096;
+		line-height: 1.4;
+	}
+	.event-types {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.25em;
+		margin-bottom: 0.5em;
+	}
+	.event-type {
+		background: #f8fafc;
+		border: 1px solid #e2e8f0;
+		border-radius: 10px;
+		padding: 1.25em;
+	}
+	.timeline {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+	.milestone {
+		display: flex;
+		gap: 1.25em;
+		padding: 0.9em 0;
+		border-bottom: 1px solid #e2e8f0;
+		align-items: baseline;
+	}
+	.milestone:last-child {
+		border-bottom: none;
+	}
+	.milestone-date {
+		font-weight: 700;
+		color: #1d4ed8;
+		font-size: 0.875rem;
+		white-space: nowrap;
+		min-width: 90px;
+	}
+	.milestone-text {
+		color: #4a5568;
+		font-size: 0.925rem;
+		line-height: 1.6;
+	}
+	.btn {
+		display: inline-block;
+		margin-top: 0.75em;
+		padding: 0.6em 1.4em;
+		background: #1d4ed8;
+		color: #fff;
+		border-radius: 8px;
+		font-weight: 600;
+		font-size: 0.95rem;
+		text-decoration: none;
+		transition: background 0.15s;
+	}
+	.btn:hover {
+		background: #1e40af;
+		text-decoration: none;
+	}
+	.email {
+		display: inline-block;
+		color: #1d4ed8;
+		font-weight: 500;
+		font-size: 1rem;
+	}
+	@media (max-width: 720px) {
+		.stats-grid { grid-template-columns: repeat(2, 1fr); }
+		.event-types { grid-template-columns: 1fr; }
+	}
+</style>

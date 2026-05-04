@@ -1,0 +1,86 @@
+:root {
+	--accent: #1d4ed8;
+	--accent-hover: #1e40af;
+	--accent-light: #dbeafe;
+	--black: 26, 32, 44;
+	--gray: 113, 128, 150;
+	--gray-light: 237, 242, 247;
+	--gray-dark: 45, 55, 72;
+	--white: 255, 255, 255;
+	--box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+		'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background: #f8fafc;
+	color: rgb(var(--gray-dark));
+	font-size: 16px;
+	line-height: 1.8;
+}
+
+main {
+	width: 1000px;
+	max-width: calc(100% - 2em);
+	margin: 0 auto;
+	padding: 2.5em 1em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 0.6rem 0;
+	color: rgb(var(--black));
+	line-height: 1.3;
+	font-weight: 700;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.35rem; }
+h4 { font-size: 1.1rem; }
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--accent-hover);
+	text-decoration: underline;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid rgb(var(--gray-light));
+	margin: 2em 0;
+}
+
+@media (max-width: 720px) {
+	body { font-size: 15px; }
+	main { padding: 1.5em 1em; }
+}
+
+.sr-only {
+	position: absolute !important;
+	width: 1px; height: 1px;
+	padding: 0; margin: -1px;
+	overflow: hidden;
+	clip: rect(0,0,0,0);
+	white-space: nowrap;
+	border: 0;
+}

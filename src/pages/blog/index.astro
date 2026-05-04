@@ -1,0 +1,220 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title="活动回顾 — 荷兰华人数据社群 DAMS" description="荷兰华人数据社群历届活动回顾" />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="page-header">
+				<h1>活动回顾</h1>
+				<p>荷兰华人数据社群历届活动精彩回顾</p>
+			</div>
+
+			<div class="tabs">
+				<button class="tab active" data-filter="all">全部</button>
+				<button class="tab" data-filter="meetup">Meetup</button>
+				<button class="tab" data-filter="datacafe">Data Cafe</button>
+			</div>
+
+			<div class="grid">
+				{posts.map((post) => (
+					<a
+						href={`/blog/${post.id}/`}
+						class="card"
+						data-category={post.data.category}
+					>
+						<div class="card-img">
+							{post.data.coverPhoto && post.data.photoFolder ? (
+								<img
+									src={`/photos/${post.data.photoFolder}/${post.data.coverPhoto}`}
+									alt={post.data.title}
+									loading="lazy"
+								/>
+							) : (
+								<div class="card-img-placeholder">DAMS</div>
+							)}
+						</div>
+						<div class="card-body">
+							{post.data.category === 'datacafe' ? (
+								<span class="badge badge-cafe">Data Cafe</span>
+							) : post.data.meetupNumber && (
+								<span class="badge">第 {post.data.meetupNumber} 次 Meetup</span>
+							)}
+							<h2>{post.data.title}</h2>
+							<p class="date">
+								{post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+							</p>
+							<p class="desc">{post.data.description}</p>
+							{post.data.photos && (
+								<p class="photo-count">{post.data.photos.length} 张照片</p>
+							)}
+						</div>
+					</a>
+				))}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<script>
+	const tabs = document.querySelectorAll<HTMLButtonElement>('.tab');
+	const cards = document.querySelectorAll<HTMLElement>('.card');
+
+	tabs.forEach((tab) => {
+		tab.addEventListener('click', () => {
+			tabs.forEach((t) => t.classList.remove('active'));
+			tab.classList.add('active');
+
+			const filter = tab.dataset.filter;
+			cards.forEach((card) => {
+				const show = filter === 'all' || card.dataset.category === filter;
+				card.style.display = show ? '' : 'none';
+			});
+		});
+	});
+</script>
+
+<style>
+	.page-header {
+		margin-bottom: 1.5em;
+		padding-bottom: 1em;
+		border-bottom: 2px solid #e2e8f0;
+	}
+	.page-header h1 {
+		font-size: 2rem;
+		margin-bottom: 0.3em;
+	}
+	.page-header p {
+		color: #718096;
+		margin: 0;
+	}
+	.tabs {
+		display: flex;
+		gap: 0.5em;
+		margin-bottom: 1.5em;
+	}
+	.tab {
+		padding: 0.45em 1.1em;
+		border-radius: 999px;
+		border: 1.5px solid #e2e8f0;
+		background: #fff;
+		color: #4a5568;
+		font-size: 0.875rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.15s;
+	}
+	.tab:hover {
+		border-color: #1d4ed8;
+		color: #1d4ed8;
+	}
+	.tab.active {
+		background: #1d4ed8;
+		border-color: #1d4ed8;
+		color: #fff;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		gap: 1.5em;
+	}
+	.card {
+		background: #fff;
+		border: 1px solid #e2e8f0;
+		border-radius: 12px;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		transition: box-shadow 0.15s, transform 0.15s;
+		display: flex;
+		flex-direction: column;
+	}
+	.card:hover {
+		box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+		transform: translateY(-2px);
+		text-decoration: none;
+	}
+	.card-img {
+		height: 200px;
+		overflow: hidden;
+		background: #e2e8f0;
+	}
+	.card-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+		display: block;
+		transition: transform 0.2s;
+	}
+	.card:hover .card-img img {
+		transform: scale(1.03);
+	}
+	.card-img-placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 2rem;
+		font-weight: 800;
+		color: #a0aec0;
+		background: #edf2f7;
+	}
+	.card-body {
+		padding: 1.25em;
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+	.badge {
+		display: inline-block;
+		background: #dbeafe;
+		color: #1d4ed8;
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.2em 0.65em;
+		border-radius: 999px;
+		margin-bottom: 0.6em;
+		width: fit-content;
+	}
+	.badge-cafe {
+		background: #d1fae5;
+		color: #065f46;
+	}
+	.card-body h2 {
+		font-size: 1rem;
+		margin-bottom: 0.3em;
+		line-height: 1.4;
+	}
+	.date {
+		color: #718096;
+		font-size: 0.8rem;
+		margin: 0 0 0.5em 0;
+	}
+	.desc {
+		color: #4a5568;
+		font-size: 0.875rem;
+		line-height: 1.6;
+		margin: 0 0 0.75em 0;
+		flex: 1;
+	}
+	.photo-count {
+		color: #a0aec0;
+		font-size: 0.78rem;
+		margin: 0;
+	}
+</style>
