@@ -5,6 +5,7 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<a href="/" class="logo">
+			<span class="logo-abbr">DAMS</span>
 			<span class="logo-full">荷兰华人数据社群</span>
 		</a>
 		<div class="nav-links">
@@ -42,10 +43,16 @@ import HeaderLink from './HeaderLink.astro';
 		text-decoration: none;
 		color: inherit;
 	}
-	.logo-full {
-		font-size: 1rem;
-		font-weight: 700;
+	.logo-abbr {
+		font-size: 1.25rem;
+		font-weight: 800;
 		color: #1d4ed8;
+		letter-spacing: -0.5px;
+	}
+	.logo-full {
+		font-size: 0.85rem;
+		color: #718096;
+		font-weight: 400;
 	}
 	.nav-links {
 		display: flex;
