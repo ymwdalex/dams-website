@@ -25,6 +25,10 @@ photos:
   - "e2807cbd7e952461d81256567535bea0.JPEG"
 ---
 
+## 相关链接
+
+- <a href="http://xhslink.com/o/5xNEQ1Z1Pcq" target="_blank">小红书活动回顾</a>
+
 ## Agenda
 
 ### 12:50 签到 & Welcome Drink & 开场

@@ -23,6 +23,10 @@ photos:
   - "IMG_1610.jpg"
 ---
 
+## 相关链接
+
+- <a href="http://xhslink.com/o/Wa0PHvSxwq" target="_blank">小红书活动回顾</a>
+
 ## Agenda
 
 ### 12:20 签到 & 开场
