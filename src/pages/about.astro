@@ -66,20 +66,20 @@ import Header from '../components/Header.astro';
 
 				<section>
 					<h2>核心活动</h2>
-					<div class="event-types">
-						<div class="event-type">
-							<h3>半年度大型 Meetup</h3>
-							<p>行业前沿技术研讨与跨界社交。深度内容涵盖：</p>
-							<ul>
-								<li><strong>技术前沿：</strong>LLM/Generative AI 落地、Transformer 演进、CV 鲁棒性研究等</li>
-								<li><strong>工程实战：</strong>MLOps 生产环境部署、Python 高性能开发、大规模搜索算法优化</li>
-								<li><strong>行业洞察：</strong>能源、医疗、物流等垂直领域的数据驱动转型经验</li>
-							</ul>
-						</div>
-						<div class="event-type">
-							<h3>Data Cafe</h3>
-							<p>轻量级、深度互动的线下沙龙。围绕特定技术痛点或职场话题（如"数据职场避坑指南"、"Tech Lead 成长之路"），在轻松的氛围中实现知识的深度传递。</p>
-						</div>
+					<div class="event-type">
+						<h3>半年度大型 Meetup</h3>
+						<p>行业前沿技术研讨与跨界社交。深度内容涵盖：</p>
+						<ul>
+							<li><strong>技术前沿：</strong>涵盖最近技术热点，如 LLM/Generative AI 落地、Transformer 演进、广告推荐技术发展等</li>
+							<li><strong>工程实战：</strong>MLOps 生产环境部署、Python 高性能开发、大规模搜索算法优化</li>
+							<li><strong>行业洞察：</strong>能源、医疗、物流等垂直领域的数据驱动转型经验</li>
+							<li><strong>圆桌讨论：</strong>邀请行业大咖，就"数据职场避坑指南"、"Tech Lead 成长之路"、"数据人在 AI 浪潮下的生存指南"等话题深度探讨</li>
+							<li><strong>荷兰生活：</strong>解锁荷兰生活，如更高效学习荷兰语、如何做好投资等</li>
+						</ul>
+					</div>
+					<div class="event-type event-type-cafe">
+						<div class="cafe-label">Data Cafe</div>
+						<p>轻量级、深度互动的线下沙龙。围绕特定技术痛点、职场话题、信息差，在轻松的氛围中实现知识的"颗粒级"传递。</p>
 					</div>
 				</section>
 
@@ -205,17 +205,27 @@ import Header from '../components/Header.astro';
 		color: #718096;
 		line-height: 1.4;
 	}
-	.event-types {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1.25em;
-		margin-bottom: 0.5em;
-	}
 	.event-type {
 		background: #f8fafc;
 		border: 1px solid #e2e8f0;
 		border-radius: 10px;
+		margin-bottom: 1em;
 		padding: 1.25em;
+	}
+	.event-type-cafe {
+		display: flex;
+		align-items: baseline;
+		gap: 1.5em;
+	}
+	.event-type-cafe p {
+		margin: 0;
+	}
+	.cafe-label {
+		font-size: 1rem;
+		font-weight: 700;
+		color: #0f766e;
+		white-space: nowrap;
+		min-width: 90px;
 	}
 	.timeline {
 		display: flex;
@@ -268,6 +278,6 @@ import Header from '../components/Header.astro';
 	}
 	@media (max-width: 720px) {
 		.stats-grid { grid-template-columns: repeat(2, 1fr); }
-		.event-types { grid-template-columns: 1fr; }
+		.event-type-cafe { flex-direction: column; gap: 0.3em; }
 	}
 </style>
