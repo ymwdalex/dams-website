@@ -5,6 +5,7 @@ import HeaderLink from './HeaderLink.astro';
 <header>
 	<nav>
 		<a href="/" class="logo">
+			<img src="/dams-logo.png" alt="荷兰华人数据社群 logo" class="logo-img" width="44" height="44" />
 			<span class="logo-abbr">DAMS</span>
 			<span class="logo-full">荷兰华人数据社群</span>
 		</a>
@@ -13,7 +14,7 @@ import HeaderLink from './HeaderLink.astro';
 			<HeaderLink href="/blog">活动回顾</HeaderLink>
 			<HeaderLink href="/about">关于我们</HeaderLink>
 			<a href="https://live.nl-dams.com/" target="_blank" class="nav-cta nav-cta-outline">现场活动</a>
-			<a href="/about#contact" class="nav-cta">加入社群</a>
+			<a href="https://gathereasy.rsvp/group/dutch-chinese-data-community" target="_blank" class="nav-cta">加入社群</a>
 		</div>
 	</nav>
 </header>
@@ -38,10 +39,16 @@ import HeaderLink from './HeaderLink.astro';
 	}
 	.logo {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		gap: 0.5em;
 		text-decoration: none;
 		color: inherit;
+	}
+	.logo-img {
+		width: 44px;
+		height: 44px;
+		border-radius: 0;
+		display: block;
 	}
 	.logo-abbr {
 		font-size: 1.25rem;

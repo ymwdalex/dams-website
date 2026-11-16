@@ -5,6 +5,7 @@ const year = new Date().getFullYear();
 <footer>
 	<div class="footer-inner">
 		<div class="footer-brand">
+			<img src="/dams-logo.png" alt="荷兰华人数据社群 logo" class="logo-img" width="40" height="40" />
 			<span class="logo-abbr">DAMS</span>
 			<span class="logo-desc">荷兰华人数据社群</span>
 		</div>
@@ -26,9 +27,16 @@ const year = new Date().getFullYear();
 	}
 	.footer-brand {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		gap: 0.5em;
 		margin-bottom: 0.5em;
+	}
+	.logo-img {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: #fff;
+		display: block;
 	}
 	.logo-abbr {
 		font-size: 1.1rem;
