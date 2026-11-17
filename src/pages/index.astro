@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import IntroVideo from '../components/IntroVideo.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const posts = (await getCollection('blog'))
@@ -49,6 +50,12 @@ const posts = (await getCollection('blog'))
 						<span class="stat-label">Data Cafe</span>
 					</div>
 				</div>
+			</section>
+
+			<!-- Intro video -->
+			<section class="intro">
+				<h2 class="section-title">认识我们</h2>
+				<IntroVideo videoId="fszml2usesQ" title="荷兰华人数据社群介绍" cover="/intro-cover.jpg" label="2 分钟认识荷兰华人数据社群" />
 			</section>
 
 			<!-- Past events -->
@@ -178,6 +185,9 @@ const posts = (await getCollection('blog'))
 		margin-bottom: 1.25em;
 		padding-bottom: 0.5em;
 		border-bottom: 2px solid #e2e8f0;
+	}
+	.intro {
+		margin-bottom: 3em;
 	}
 	.latest {
 		margin-bottom: 3em;

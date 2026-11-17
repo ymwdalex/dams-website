@@ -1,0 +1,107 @@
+---
+// 社群介绍视频：先显示封面，点击后才加载 YouTube（youtube-nocookie，点播放前不写追踪 cookie）
+interface Props {
+	videoId: string;
+	title: string;
+	cover: string;
+	label: string;
+}
+const { videoId, title, cover, label } = Astro.props;
+---
+
+<div class="intro-video" data-video-id={videoId} data-title={title}>
+	<button type="button" class="intro-play" aria-label={`播放视频：${title}`}>
+		<img src={cover} alt={title} width="1280" height="720" loading="lazy" />
+		<span class="intro-cta">
+			<span class="intro-icon" aria-hidden="true">
+				<svg viewBox="0 0 24 24" width="18" height="18"><path d="M8 5v14l11-7z" fill="currentColor" /></svg>
+			</span>
+			{label}
+		</span>
+	</button>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('.intro-video').forEach((box) => {
+		box.querySelector('.intro-play')?.addEventListener('click', () => {
+			const iframe = document.createElement('iframe');
+			iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.videoId}?autoplay=1&rel=0`;
+			iframe.title = box.dataset.title ?? '';
+			iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+			iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+			iframe.allowFullscreen = true;
+			box.replaceChildren(iframe);
+		});
+	});
+</script>
+
+<style>
+	.intro-video {
+		position: relative;
+		aspect-ratio: 16 / 9;
+		border-radius: 12px;
+		overflow: hidden;
+		background: #0f1e3a;
+		box-shadow: 0 4px 20px rgba(15, 30, 58, 0.15);
+	}
+	.intro-play,
+	.intro-video :global(iframe) {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+	.intro-play {
+		padding: 0;
+		cursor: pointer;
+		background: none;
+	}
+	.intro-play img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 0;
+		display: block;
+		transition: transform 0.3s;
+	}
+	.intro-play:hover img {
+		transform: scale(1.02);
+	}
+	.intro-cta {
+		position: absolute;
+		left: 50%;
+		bottom: 5%;
+		transform: translateX(-50%);
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6em;
+		padding: 0.6em 1.3em 0.6em 0.6em;
+		background: #fff;
+		color: #1e293b;
+		border-radius: 999px;
+		font-size: 1rem;
+		font-weight: 600;
+		white-space: nowrap;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+		transition: transform 0.15s;
+	}
+	.intro-play:hover .intro-cta {
+		transform: translateX(-50%) scale(1.05);
+	}
+	.intro-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.2em;
+		height: 2.2em;
+		border-radius: 50%;
+		background: #1d4ed8;
+		color: #fff;
+	}
+	@media (max-width: 600px) {
+		.intro-cta {
+			font-size: 0.85rem;
+		}
+	}
+</style>
